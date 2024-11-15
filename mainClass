@@ -1,0 +1,74 @@
+import java.util.*;
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+
+        int randomInteger = random.nextInt(1, 100); // Random number between 1 and 100
+        System.out.println("Welcome to the Number Guessing Game!");
+        System.out.println("I'm thinking of a number between 1 and 100.");
+        System.out.println("You have 'k' chances to guess the correct number.");
+        System.out.println("Please select the difficulty level:");
+        System.out.println("1. Easy (10 chances)\n2. Medium (5 chances)\n3. Hard (3 chances)");
+
+        int choice = sc.nextInt();
+        int chances;
+
+        switch (choice)
+        {
+            case 1:
+                chances = 10;
+                System.out.println("You selected Easy level with " + chances + " chances.");
+                break;
+            case 2:
+                chances = 5;
+                System.out.println("You selected Medium level with " + chances + " chances.");
+                break;
+            case 3:
+                chances = 3;
+                System.out.println("You selected Hard level with " + chances + " chances.");
+                break;
+            default:
+                System.out.println("Invalid selection. Please select 1, 2, or 3.");
+                return; // Terminate the program
+        }
+
+        int noOfAttempts = 0;
+        
+
+        while (chances > 0) {
+            noOfAttempts++;
+            System.out.print("Enter your guess: ");
+            int userGuess = sc.nextInt();
+
+            if (userGuess == randomInteger)
+            {
+                System.out.println("Congratulations! You guessed the correct number in " + noOfAttempts + " attempts.");
+               
+                break; // Exit the loop on a correct guess
+            }
+            else if (userGuess < randomInteger)
+            {
+                System.out.println("Incorrect! The number is greater than " + userGuess + ".");
+            }
+            else
+            {
+                System.out.println("Incorrect! The number is less than " + userGuess + ".");
+            }
+
+            chances--;
+            if (chances > 0) {
+                System.out.println("Attempts remaining: " + chances);
+            }
+        }
+
+        if (!correctGuess)
+        {
+            System.out.println("Sorry! You've used all your chances. The correct number was: " + randomInteger);
+        }
+
+        System.out.println("Thank you for playing!");
+    }
+}
